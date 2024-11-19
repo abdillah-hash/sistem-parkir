@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Parkir</title>
+</head>
+<body>
+    <h1>Sistem Parkir Mobil</h1>
+    <h2>Status Tempat Parkir</h2>
+    <ul>
+        {% for tempat in tempat_parkir %}
+            <li>
+                Tempat {{ tempat.nomor }}: 
+                {% if tempat.tersedia %}
+                    <strong>Tersedia</strong>
+                {% else %}
+                    <strong>Terisi</strong>
+                    <a href="{{ url_for('keluar', nomor= tempat.nomor) }}">[Keluar]</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('parkir_mobil') }}" method="post">
+        <button type="submit">Parkir Mobil</button>
+    </form>
+</body>
+</html>
